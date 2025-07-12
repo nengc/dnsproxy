@@ -2,7 +2,7 @@ name: Build Go Mobile for iOS (v20)
 
 on:
   push:
-    branches: [ master ]
+    branches: [ 'release-v0.20.0' ]
     tags: [ 'v0.20.0' ]  # 只处理v20相关的标签
   pull_request:
     branches: [ main ]
@@ -15,40 +15,41 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
       with:
-        ref: 'v0.20.0'  # 确保检出正确的tag
-        fetch-depth: 0   # 获取完整历史，确保所有提交可用
+        branch: 'release-v0.20.0'
+        # ref: 'v0.20.0'  # 确保检出正确的tag
+        # fetch-depth: 0   # 获取完整历史，确保所有提交可用
   
-    - name: Create branch from tag
-      run: |
-        git config --global user.name "GitHub Actions"
-        git config --global user.email "actions@github.com"
+    # - name: Create branch from tag
+    #   run: |
+    #     git config --global user.name "GitHub Actions"
+    #     git config --global user.email "actions@github.com"
         
-        # 移除可能已存在的同名远程
-        git remote remove fork 2>/dev/null || true
+    #     # 移除可能已存在的同名远程
+    #     git remote remove fork 2>/dev/null || true
         
-        # 添加指向您Fork仓库的远程
-        git remote add fork "https://$GITHUB_ACTOR:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY.git"
+    #     # 添加指向您Fork仓库的远程
+    #     git remote add fork "https://$GITHUB_ACTOR:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY.git"
         
-        # 获取实际的提交SHA
-        ACTUAL_SHA=$(git rev-parse HEAD)
+    #     # 获取实际的提交SHA
+    #     ACTUAL_SHA=$(git rev-parse HEAD)
         
-        # 创建分支名称
-        branch_name="release-v0.20.0"
+    #     # 创建分支名称
+    #     branch_name="release-v0.20.0"
         
-        # 确保我们拥有该提交（由于fetch-depth:0，应该已经存在）
-        git show $ACTUAL_SHA --quiet
+    #     # 确保我们拥有该提交（由于fetch-depth:0，应该已经存在）
+    #     git show $ACTUAL_SHA --quiet
         
-        # 创建分支
-        git branch $branch_name $ACTUAL_SHA
+    #     # 创建分支
+    #     git branch $branch_name $ACTUAL_SHA
         
-        # 推送到Fork仓库
-        git push fork $branch_name
+    #     # 推送到Fork仓库
+    #     git push fork $branch_name
         
-        echo "Successfully created branch $branch_name at $ACTUAL_SHA"
-      env:
-        GITHUB_ACTOR: ${{ github.actor }}
-        GITHUB_REPOSITORY: ${{ github.repository }}
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    #     echo "Successfully created branch $branch_name at $ACTUAL_SHA"
+    #   env:
+    #     GITHUB_ACTOR: ${{ github.actor }}
+    #     GITHUB_REPOSITORY: ${{ github.repository }}
+    #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
         
 
