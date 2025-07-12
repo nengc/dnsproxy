@@ -44,9 +44,6 @@ gopath:
 	#cd $(GOPATH)/src/golang.org/x/mobile && mod tidy
 	#cd $(GOPATH)/src/golang.org/x/mobile/cmd/gomobile && GOPATH=$(GOPATH) GO111MODULE=on go build -ldflags="-s -w" -o $(GOPATH)/bin/gomobile
 	
-	# 安装 bind 包
-	go install golang.org/x/mobile/bind@latest
-	go install golang.org/x/mobile/bind/objc@latest
 	    
 	# 安装 gomobile
 	go install golang.org/x/mobile/cmd/gomobile@latest
