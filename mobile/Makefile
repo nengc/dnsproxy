@@ -24,10 +24,10 @@ gopath:
 	cp -rf $(GOPATH)/../../vendor/github.com/* $(GOPATH)/src/github.com/
 	cp -rf $(GOPATH)/../../vendor/golang.org/* $(GOPATH)/src/golang.org/
 
-	mkdir -p $(GOPATH)/src/golang.org/x
-	cd $(GOPATH)/src/golang.org/x && git clone https://github.com/golang/mobile.git && cd $(GOPATH)/src/golang.org/x/mobile && git reset --hard 3c911d8e3edae4ddeea7f8a6e3ea9eae74f1a81a
-	ls $(GOPATH)/src/golang.org/x
-	ls $(GOPATH)/src/golang.org/x/mobile
+	#mkdir -p $(GOPATH)/src/golang.org/x
+	#cd $(GOPATH)/src/golang.org/x && git clone https://github.com/golang/mobile.git && cd $(GOPATH)/src/golang.org/x/mobile && git reset --hard 3c911d8e3edae4ddeea7f8a6e3ea9eae74f1a81a
+	#ls $(GOPATH)/src/golang.org/x
+	#ls $(GOPATH)/src/golang.org/x/mobile
 
 	# 使用兼容Go 1.13的gomobile版本
 	# GOPATH=$(GOPATH) GO111MODULE=on go get -v golang.org/x/mobile/cmd/gomobile@v0.0.0-20200329125638-4f31ab562ee6
@@ -41,8 +41,15 @@ gopath:
 	ls $(GOPATH)
 	ls $(GOPATH)/src
 	ls $(GOPATH)/src/golang.org
-	cd $(GOPATH)/src/golang.org/x/mobile && mod tidy
-	cd $(GOPATH)/src/golang.org/x/mobile/cmd/gomobile && GOPATH=$(GOPATH) GO111MODULE=on go build -ldflags="-s -w" -o $(GOPATH)/bin/gomobile
+	#cd $(GOPATH)/src/golang.org/x/mobile && mod tidy
+	#cd $(GOPATH)/src/golang.org/x/mobile/cmd/gomobile && GOPATH=$(GOPATH) GO111MODULE=on go build -ldflags="-s -w" -o $(GOPATH)/bin/gomobile
+	
+	# 安装 bind 包
+	go install golang.org/x/mobile/bind@latest
+	go install golang.org/x/mobile/bind/objc@latest
+	    
+	# 安装 gomobile
+	go install golang.org/x/mobile/cmd/gomobile@latest
 	ls $(GOPATH)/bin
 
 android: check-env-android gopath
