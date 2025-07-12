@@ -23,14 +23,17 @@ gopath:
 	if [ ! -h $(GOPATH)/src/github.com/AdguardTeam/dnsproxy ]; then rm -rf $(GOPATH)/src/github.com/AdguardTeam/dnsproxy && ln -fs $(mkfile_dir)/.. $(GOPATH)/src/github.com/AdguardTeam/dnsproxy; fi
 	cp -rf $(GOPATH)/../../vendor/github.com/* $(GOPATH)/src/github.com/
 	cp -rf $(GOPATH)/../../vendor/golang.org/* $(GOPATH)/src/golang.org/
+
+	cd $(GOPATH)
+	git clone https://go.googlesource.com/mobile && git reset --hard a42111704963f4f0d1266674e1e97489aa8dcca0
 	
 	# 使用兼容Go 1.13的gomobile版本
 	# GOPATH=$(GOPATH) GO111MODULE=on go get -v golang.org/x/mobile/cmd/gomobile@v0.0.0-20200329125638-4f31ab562ee6
-	GOPATH=$(GOPATH) GO111MODULE=on go get -v golang.org/x/mobile/cmd/gomobile@v0.0.0-20190312151609-d3739f865fa6
+	# GOPATH=$(GOPATH) GO111MODULE=on go get -v golang.org/x/mobile/cmd/gomobile@v0.0.0-20190312151609-d3739f865fa6
 	go env
 	#go list -m all
-	ls /Users/runner/work/dnsproxy/dnsproxy/mobile/build/pkg/mod/golang.org/x
-	ls /Users/runner/work/dnsproxy/dnsproxy/mobile/build/pkg/mod/golang.org/x/mobile@v0.0.0-20190312151609-d3739f865fa6
+	#ls /Users/runner/work/dnsproxy/dnsproxy/mobile/build/pkg/mod/golang.org/x
+	#ls /Users/runner/work/dnsproxy/dnsproxy/mobile/build/pkg/mod/golang.org/x/mobile@v0.0.0-20190312151609-d3739f865fa6
 
 	cd /Users/runner/work/dnsproxy/dnsproxy/mobile/build/pkg/mod/golang.org/x/mobile@v0.0.0-20190312151609-d3739f865fa6/cmd/gomobile && git reset --hard a42111704963f4f0d1266674e1e97489aa8dcca0
 
