@@ -29,6 +29,7 @@ gopath:
 	GOPATH=$(GOPATH) GO111MODULE=on go get -v golang.org/x/mobile/cmd/gomobile@v0.0.0-20190312151609-d3739f865fa6
 	go env
 	go list -m all
+	ls /Users/runner/work/dnsproxy/dnsproxy/mobile/build/pkg/mod
 	ls /Users/runner/work/dnsproxy/dnsproxy/mobile/build/src/golang.org/x/
 	ls $(GOPATH)/src/golang.org/x/mobile/cmd/gomobile
 	cd $(GOPATH)/src/golang.org/x/mobile/cmd/gomobile && git reset --hard a42111704963f4f0d1266674e1e97489aa8dcca0
