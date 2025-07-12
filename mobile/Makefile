@@ -38,9 +38,9 @@ gopath:
 	#ls /Users/runner/work/dnsproxy/dnsproxy/mobile/build/pkg/mod/golang.org/x/mobile@v0.0.0-20190312151609-d3739f865fa6
 
 	#cd /Users/runner/work/dnsproxy/dnsproxy/mobile/build/pkg/mod/golang.org/x/mobile@v0.0.0-20190312151609-d3739f865fa6/cmd/gomobile && git reset --hard a42111704963f4f0d1266674e1e97489aa8dcca0
-	ls $(GOPATH)/
+	ls $(GOPATH)
 	ls $(GOPATH)/src
- 	ls $(GOPATH)/src/golang.org/x/
+ 	ls $(GOPATH)/src/golang.org/x
 	# 初始化gomobile
 	GOPATH=$(GOPATH) GO111MODULE=off $(GOPATH)/bin/gomobile init
 
