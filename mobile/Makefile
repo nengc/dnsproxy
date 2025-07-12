@@ -42,15 +42,14 @@ gopath:
 	ls $(GOPATH)/src
 	ls $(GOPATH)/src/golang.org
 	cd $(GOPATH)/src/golang.org/x/mobile/cmd/gomobile && GOPATH=$(GOPATH) GO111MODULE=off go build -o $(GOPATH)/bin/gomobile
-	# 初始化gomobile
-	GOPATH=$(GOPATH) GO111MODULE=off $(GOPATH)/bin/gomobile init
+	ls $(GOPATH)/bin
 
 android: check-env-android gopath
 	GOPATH=$(GOPATH) GO111MODULE=off PATH=$(GOPATH)/bin:$(PATH) gomobile init -ndk $(ANDROID_NDK)
 	GOPATH=$(GOPATH) GO111MODULE=off PATH=$(GOPATH)/bin:$(PATH) ANDROID_HOME=$(ANDROID_HOME) gomobile bind -target=android -o $(NAME).aar github.com/AdguardTeam/dnsproxy/mobile
 
 ios: gopath
-	#GOPATH=$(GOPATH) GO111MODULE=off PATH=$(GOPATH)/bin:$(PATH) gomobile init
+	GOPATH=$(GOPATH) GO111MODULE=off PATH=$(GOPATH)/bin:$(PATH) gomobile init
 	GOPATH=$(GOPATH) GO111MODULE=off PATH=$(GOPATH)/bin:$(PATH) gomobile bind -ldflags="-s -w" -target=ios -o $(NAME).framework github.com/AdguardTeam/dnsproxy/mobile
 
 build: android ios
