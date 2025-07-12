@@ -25,7 +25,7 @@ gopath:
 	
 	# 使用兼容Go 1.13的gomobile版本
 	# GOPATH=$(GOPATH) GO111MODULE=on go get -v golang.org/x/mobile/cmd/gomobile@v0.0.0-20200329125638-4f31ab562ee6
-	GOPATH=$(GOPATH) GO111MODULE=on go get -v golang.org/x/mobile/cmd/gomobile@0.0.0-20250711185624-d5bb5ecc55c0
+	GOPATH=$(GOPATH) GO111MODULE=on go get -v golang.org/x/mobile/cmd/gomobile@v0.0.0-20250711185624-d5bb5ecc55c0
 	ls $(GOPATH)/src/golang.org/x/mobile/cmd/gomobile
 	cd $(GOPATH)/src/golang.org/x/mobile/cmd/gomobile && git reset --hard a42111704963f4f0d1266674e1e97489aa8dcca0
 
