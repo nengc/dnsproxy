@@ -24,7 +24,8 @@ android: check-env-android
 
 ios:
 	go mod init github.com/AdguardTeam/dnsproxy/mobile
-	go mod vendor
+	#go mod vendor
+	go get github.com/AdguardTeam/dnsproxy/proxy@v0.20.0
 	go mod tidy
 
 	go install golang.org/x/mobile/cmd/gomobile@latest
