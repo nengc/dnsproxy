@@ -25,7 +25,7 @@ gopath:
 	cp -rf $(GOPATH)/../../vendor/golang.org/* $(GOPATH)/src/golang.org/
 
 	cd $(GOPATH)
-	git clone https://go.googlesource.com/mobile && git reset --hard a42111704963f4f0d1266674e1e97489aa8dcca0
+	git clone https://github.com/golang/mobile.git && cd mobile && git reset --hard a42111704963f4f0d1266674e1e97489aa8dcca0
 	
 	# 使用兼容Go 1.13的gomobile版本
 	# GOPATH=$(GOPATH) GO111MODULE=on go get -v golang.org/x/mobile/cmd/gomobile@v0.0.0-20200329125638-4f31ab562ee6
