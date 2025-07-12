@@ -41,6 +41,7 @@ gopath:
 	ls $(GOPATH)
 	ls $(GOPATH)/src
 	ls $(GOPATH)/src/golang.org
+	cd $(GOPATH)/src/golang.org/x/mobile/cmd/gomobile && go build -o $(GOPATH)/bin/gomobile
 	# 初始化gomobile
 	GOPATH=$(GOPATH) GO111MODULE=off $(GOPATH)/bin/gomobile init
 
