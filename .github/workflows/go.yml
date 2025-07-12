@@ -21,10 +21,12 @@ jobs:
       run: |
         git config --global user.name "GitHub Actions"
         git config --global user.email "actions@github.com"
+        git remote set-url fork "https://$GITHUB_ACTOR:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY.git"
         branch_name="release-v0.20.0"
         git show ${{ github.sha }} --quiet || git fetch --depth=1 origin ${{ github.sha }}
         git branch $branch_name ${{ github.sha }}
-        git push origin $branch_name
+        git push fork $BRANCH_NAME
+        git remote set-url origin https://github.com/$GITHUB_REPOSITORY.git
       env:
         TAG_NAME: ${{ steps.tag.outputs.tag_name }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
