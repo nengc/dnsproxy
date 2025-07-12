@@ -44,7 +44,8 @@ ios:
 	ls /Users/runner/go/bin/
 	gomobile init
 	go get golang.org/x/mobile/cmd/gomobile
-	gomobile bind -ldflags="-s -w" -target=ios,iossimulator/arm64,iossimulator/amd64 -o $(NAME).xcframework github.com/AdguardTeam/dnsproxy/mobile
+	#gomobile bind -ldflags="-s -w" -target=ios,iossimulator/arm64,iossimulator/amd64 -o $(NAME).xcframework github.com/AdguardTeam/dnsproxy/mobile
+	gomobile bind -ldflags="-s -w" -target=ios,iossimulator/arm64,iossimulator/amd64 -o $(NAME).xcframework github.com/nengc/dnsproxy/mobile	
 	ls
 	pwd
 
