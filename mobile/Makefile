@@ -24,6 +24,8 @@ android: check-env-android
 
 ios:
 	go install golang.org/x/mobile/cmd/gomobile@latest
+	go install golang.org/x/mobile/cmd/gobind@latest
+    	go get golang.org/x/mobile/bind/objc@latest
 	which gomobile
 	ls /Users/runner/go/bin/
 	gomobile init
