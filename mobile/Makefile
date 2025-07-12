@@ -23,6 +23,10 @@ android: check-env-android
 	gomobile bind -target=android -o $(NAME).aar github.com/AdguardTeam/dnsproxy/mobile
 
 ios:
+	go mod init github.com/AdguardTeam/dnsproxy/mobile
+	go mod vendor
+	go mod tidy
+
 	go install golang.org/x/mobile/cmd/gomobile@latest
 	go install golang.org/x/mobile/cmd/gobind@latest
 	go env
@@ -30,9 +34,9 @@ ios:
 	ls
 	pwd
 	#ls /Users/runner/go/pkg/mod/golang.org/x/mobile@v0.0.0-20250711185624-d5bb5ecc55c0
-	mkdir -p /Users/runner/work/dnsproxy/dnsproxy/vendor/golang.org/x/mobile
-	cp -rf /Users/runner/go/pkg/mod/golang.org/x/mobile@v0.0.0-20250711185624-d5bb5ecc55c0/* /Users/runner/work/dnsproxy/dnsproxy/vendor/golang.org/x/mobile
-	ls /Users/runner/work/dnsproxy/dnsproxy/vendor
+	#mkdir -p /Users/runner/work/dnsproxy/dnsproxy/vendor/golang.org/x/mobile
+	#cp -rf /Users/runner/go/pkg/mod/golang.org/x/mobile@v0.0.0-20250711185624-d5bb5ecc55c0/* /Users/runner/work/dnsproxy/dnsproxy/vendor/golang.org/x/mobile
+	#ls /Users/runner/work/dnsproxy/dnsproxy/vendor
 
     	#go get golang.org/x/mobile/bind/objc@latest
 	which gomobile
