@@ -46,6 +46,7 @@ ios:
 	go get golang.org/x/mobile/cmd/gomobile
 	gomobile bind -ldflags="-s -w" -target=ios,iossimulator/arm64,iossimulator/amd64 -o $(NAME).xcframework github.com/AdguardTeam/dnsproxy/mobile
 	ls
+	pwd
 
 build: android ios
 
