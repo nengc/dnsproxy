@@ -22,17 +22,20 @@ gopath:
 	if [ ! -h $(GOPATH)/src/github.com/AdguardTeam/dnsproxy ]; then rm -rf $(GOPATH)/src/github.com/AdguardTeam/dnsproxy && ln -fs $(mkfile_dir)/.. $(GOPATH)/src/github.com/AdguardTeam/dnsproxy; fi
 	cp -rf $(GOPATH)/../../vendor/github.com/* $(GOPATH)/src/github.com/
 	cp -rf $(GOPATH)/../../vendor/golang.org/* $(GOPATH)/src/golang.org/
-	GOPATH=$(GOPATH) GO111MODULE=on go get -v golang.org/x/mobile/cmd/gomobile
-	# Temporary -- reset gomobile to the commit that we use with the NDK r19
-	cd $(GOPATH)/src/golang.org/x/mobile/cmd/gomobile && git reset --hard a42111704963f4f0d1266674e1e97489aa8dcca0
-	GOPATH=$(GOPATH) GO111MODULE=on go get -v golang.org/x/mobile/cmd/gomobile
+	
+	# 使用兼容Go 1.13的gomobile版本
+	GOPATH=$(GOPATH) GO111MODULE=off go get -v golang.org/x/mobile/cmd/gomobile@v0.0.0-20200329125638-4f31ab562ee6
+	
+	# 初始化gomobile
+	GOPATH=$(GOPATH) GO111MODULE=off $(GOPATH)/bin/gomobile init
+
 
 android: check-env-android gopath
 	GOPATH=$(GOPATH) GO111MODULE=off PATH=$(GOPATH)/bin:$(PATH) gomobile init -ndk $(ANDROID_NDK)
 	GOPATH=$(GOPATH) GO111MODULE=off PATH=$(GOPATH)/bin:$(PATH) ANDROID_HOME=$(ANDROID_HOME) gomobile bind -target=android -o $(NAME).aar github.com/AdguardTeam/dnsproxy/mobile
 
 ios: gopath
-	GOPATH=$(GOPATH) GO111MODULE=off PATH=$(GOPATH)/bin:$(PATH) gomobile init
+	#GOPATH=$(GOPATH) GO111MODULE=off PATH=$(GOPATH)/bin:$(PATH) gomobile init
 	GOPATH=$(GOPATH) GO111MODULE=off PATH=$(GOPATH)/bin:$(PATH) gomobile bind -ldflags="-s -w" -target=ios -o $(NAME).framework github.com/AdguardTeam/dnsproxy/mobile
 
 build: android ios
