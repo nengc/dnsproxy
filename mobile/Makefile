@@ -18,12 +18,13 @@ export GOPROXY = https://proxy.golang.org,direct
 
 android: check-env-android
 	go install golang.org/x/mobile/cmd/gomobile@latest
-	which gomobile
+	
 	gomobile init -ndk $(ANDROID_NDK)
 	gomobile bind -target=android -o $(NAME).aar github.com/AdguardTeam/dnsproxy/mobile
 
 ios:
 	go install golang.org/x/mobile/cmd/gomobile@latest
+	which gomobile
 	gomobile init
 	gomobile bind -ldflags="-s -w" -target=ios,iossimulator/arm64,iossimulator/amd64 -o $(NAME).xcframework github.com/AdguardTeam/dnsproxy/mobile
 
