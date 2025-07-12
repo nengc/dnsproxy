@@ -54,6 +54,7 @@ ios: gopath
 	ls
 	#GOPATH=$(GOPATH) GO111MODULE=off PATH=$(GOPATH)/bin:$(PATH) gomobile bind -h
 	GOPATH=$(GOPATH) GO111MODULE=on PATH=$(GOPATH)/bin:$(PATH) gomobile init
+	cp -rf $(GOPATH)/src/golang.org/* $(GOPATH)/../../vendor/golang.org/
 	GOPATH=$(GOPATH) GO111MODULE=off PATH=$(GOPATH)/bin:$(PATH) gomobile bind -ldflags="-s -w" -target=ios,iossimulator/arm64,iossimulator/amd64 -o $(NAME).xcframework github.com/AdguardTeam/dnsproxy/mobile
 
 build: android ios
