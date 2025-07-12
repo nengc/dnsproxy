@@ -47,8 +47,6 @@ gopath:
 	    
 	# 安装 gomobile
 	go install golang.org/x/mobile/cmd/gomobile@latest
-	go get golang.org/x/mobile/bind
-	go get golang.org/x/mobile/bind/objc
 	ls $(GOPATH)/bin
 
 android: check-env-android gopath
@@ -59,6 +57,9 @@ ios: gopath
 	pwd
 	ls
 	cd $(GOPATH) && go mod tidy
+	go get golang.org/x/mobile/bind
+	go get golang.org/x/mobile/bind/objc
+
 	#GOPATH=$(GOPATH) GO111MODULE=off PATH=$(GOPATH)/bin:$(PATH) gomobile bind -h
 	GOPATH=$(GOPATH) GO111MODULE=on PATH=$(GOPATH)/bin:$(PATH) gomobile init
 	#cp -rf $(GOPATH)/src/golang.org/* $(GOPATH)/../../vendor/golang.org/
