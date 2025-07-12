@@ -25,7 +25,7 @@ gopath:
 	cp -rf $(GOPATH)/../../vendor/golang.org/* $(GOPATH)/src/golang.org/
 
 	mkdir -p $(GOPATH)/src/golang.org/x
-	cd $(GOPATH)/src/golang.org/x && git clone https://github.com/golang/mobile.git && cd $(GOPATH)/src/golang.org/x/mobile && git reset --hard a42111704963f4f0d1266674e1e97489aa8dcca0
+	cd $(GOPATH)/src/golang.org/x && git clone https://github.com/golang/mobile.git && cd $(GOPATH)/src/golang.org/x/mobile && git reset --hard 3c911d8e3edae4ddeea7f8a6e3ea9eae74f1a81a
 	ls $(GOPATH)/src/golang.org/x
 	ls $(GOPATH)/src/golang.org/x/mobile
 
