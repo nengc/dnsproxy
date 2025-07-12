@@ -30,6 +30,7 @@ ios:
 	ls
 	pwd
 	#ls /Users/runner/go/pkg/mod/golang.org/x/mobile@v0.0.0-20250711185624-d5bb5ecc55c0
+	mkdir -p /Users/runner/work/dnsproxy/dnsproxy/vendor/mobile
 	cp -rf /Users/runner/go/pkg/mod/golang.org/x/mobile@v0.0.0-20250711185624-d5bb5ecc55c0/* /Users/runner/work/dnsproxy/dnsproxy/vendor/mobile
 	ls /Users/runner/work/dnsproxy/dnsproxy/vendor
 
