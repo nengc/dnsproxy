@@ -82,4 +82,4 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: ios-v20-output
-        path: output/
+        path: dnsproxy.xcframework/
