@@ -47,6 +47,8 @@ gopath:
 	    
 	# 安装 gomobile
 	go install golang.org/x/mobile/cmd/gomobile@latest
+	go get golang.org/x/mobile/bind
+	go get golang.org/x/mobile/bind/objc
 	ls $(GOPATH)/bin
 
 android: check-env-android gopath
