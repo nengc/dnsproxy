@@ -18,6 +18,7 @@ cleanfast:
 	rm -rf $(NAME).framework
 
 gopath:
+	go env -w GOPATH=$(GOPATH)
 	mkdir -p $(GOPATH)/src/github.com/AdguardTeam/dnsproxy
 	if [ ! -h $(GOPATH)/src/github.com/AdguardTeam/dnsproxy ]; then rm -rf $(GOPATH)/src/github.com/AdguardTeam/dnsproxy && ln -fs $(mkfile_dir)/.. $(GOPATH)/src/github.com/AdguardTeam/dnsproxy; fi
 	cp -rf $(GOPATH)/../../vendor/github.com/* $(GOPATH)/src/github.com/
