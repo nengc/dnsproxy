@@ -24,7 +24,7 @@ gopath:
 	cp -rf $(GOPATH)/../../vendor/golang.org/* $(GOPATH)/src/golang.org/
 	
 	# 使用兼容Go 1.13的gomobile版本
-	GOPATH=$(GOPATH) GO111MODULE=off go get -v golang.org/x/mobile/cmd/gomobile@v0.0.0-20200329125638-4f31ab562ee6
+	GOPATH=$(GOPATH) GO111MODULE=on go get -v golang.org/x/mobile/cmd/gomobile@v0.0.0-20200329125638-4f31ab562ee6
 	
 	# 初始化gomobile
 	GOPATH=$(GOPATH) GO111MODULE=off $(GOPATH)/bin/gomobile init
