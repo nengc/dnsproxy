@@ -41,7 +41,8 @@ gopath:
 	ls $(GOPATH)
 	ls $(GOPATH)/src
 	ls $(GOPATH)/src/golang.org
-	cd $(GOPATH)/src/golang.org/x/mobile/cmd/gomobile && GOPATH=$(GOPATH) GO111MODULE=off go build -ldflags="-s -w" -o $(GOPATH)/bin/gomobile
+	cd $(GOPATH)/src/golang.org/x/mobile && mod tidy
+	cd $(GOPATH)/src/golang.org/x/mobile/cmd/gomobile && GOPATH=$(GOPATH) GO111MODULE=on go build -ldflags="-s -w" -o $(GOPATH)/bin/gomobile
 	ls $(GOPATH)/bin
 
 android: check-env-android gopath
