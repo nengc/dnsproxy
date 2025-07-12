@@ -25,6 +25,7 @@ android: check-env-android
 ios:
 	go install golang.org/x/mobile/cmd/gomobile@latest
 	which gomobile
+	ls /Users/runner/go/bin/
 	gomobile init
 	gomobile bind -ldflags="-s -w" -target=ios,iossimulator/arm64,iossimulator/amd64 -o $(NAME).xcframework github.com/AdguardTeam/dnsproxy/mobile
 
