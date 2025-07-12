@@ -60,6 +60,8 @@ ios: gopath
 	go get golang.org/x/mobile/bind
 	go get golang.org/x/mobile/bind/objc
 
+	go mod vendor
+
 	#GOPATH=$(GOPATH) GO111MODULE=off PATH=$(GOPATH)/bin:$(PATH) gomobile bind -h
 	GOPATH=$(GOPATH) GO111MODULE=on PATH=$(GOPATH)/bin:$(PATH) gomobile init
 	#cp -rf $(GOPATH)/src/golang.org/* $(GOPATH)/../../vendor/golang.org/
