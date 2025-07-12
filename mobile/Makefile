@@ -24,7 +24,8 @@ gopath:
 	cp -rf $(GOPATH)/../../vendor/github.com/* $(GOPATH)/src/github.com/
 	cp -rf $(GOPATH)/../../vendor/golang.org/* $(GOPATH)/src/golang.org/
 
-	cd $(GOPATH)/src/golang.org/x/
+	cd $(GOPATH)/src/golang.org/
+	mkdir x && cd x
 	git clone https://github.com/golang/mobile.git && cd mobile && git reset --hard a42111704963f4f0d1266674e1e97489aa8dcca0
 
 
@@ -42,7 +43,6 @@ gopath:
  	ls $(GOPATH)/src/golang.org/x/
 	# 初始化gomobile
 	GOPATH=$(GOPATH) GO111MODULE=off $(GOPATH)/bin/gomobile init
-
 
 android: check-env-android gopath
 	GOPATH=$(GOPATH) GO111MODULE=off PATH=$(GOPATH)/bin:$(PATH) gomobile init -ndk $(ANDROID_NDK)
