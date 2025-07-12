@@ -30,8 +30,8 @@ ios:
 	ls
 	pwd
 	#ls /Users/runner/go/pkg/mod/golang.org/x/mobile@v0.0.0-20250711185624-d5bb5ecc55c0
-	cp /Users/runner/go/pkg/mod/golang.org/x/mobile@v0.0.0-20250711185624-d5bb5ecc55c0 vendor/
-	ls vendor
+	cp /Users/runner/go/pkg/mod/golang.org/x/mobile@v0.0.0-20250711185624-d5bb5ecc55c0 /Users/runner/work/dnsproxy/dnsproxy/vendor/
+	ls /Users/runner/work/dnsproxy/dnsproxy/vendor
 
     	#go get golang.org/x/mobile/bind/objc@latest
 	which gomobile
