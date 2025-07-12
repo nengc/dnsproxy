@@ -27,7 +27,7 @@ ios:
 	go install golang.org/x/mobile/cmd/gobind@latest
 	go env
 	ls /Users/runner/go/pkg/mod/golang.org/x
-	ls /Users/runner/go/pkg/mod/golang.org/x/mobile
+	ls /Users/runner/go/pkg/mod/golang.org/x/mobile@v0.0.0-20250711185624-d5bb5ecc55c0
 
     	#go get golang.org/x/mobile/bind/objc@latest
 	which gomobile
