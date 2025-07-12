@@ -23,9 +23,9 @@ android: check-env-android
 	gomobile bind -target=android -o $(NAME).aar github.com/AdguardTeam/dnsproxy/mobile
 
 ios:
-	go mod init github.com/AdguardTeam/dnsproxy/mobile
+	go mod init github.com/nengc/dnsproxy/mobile
 	#go mod vendor
-	go get github.com/AdguardTeam/dnsproxy/proxy@v0.20.0
+	go get github.com/AdguardTeam/dnsproxy@v0.20.0
 	go mod tidy
 
 	go install golang.org/x/mobile/cmd/gomobile@latest
