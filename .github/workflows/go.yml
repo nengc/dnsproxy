@@ -17,69 +17,62 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
       with:
-        # ref: 'release-v0.24.0'
-        ref: 'v0.24.0'  # 确保检出正确的tag
+        ref: 'release-v0.24.0'
+        # ref: 'v0.24.0'  # 确保检出正确的tag
         # fetch-depth: 0   # 获取完整历史，确保所有提交可用
   
-    - name: Create branch from tag
+    # - name: Create branch from tag
+    #   run: |
+    #     git config --global user.name "GitHub Actions"
+    #     git config --global user.email "actions@github.com"
+        
+    #     # 移除可能已存在的同名远程
+    #     git remote remove fork 2>/dev/null || true
+        
+    #     # 添加指向您Fork仓库的远程
+    #     git remote add fork "https://$GITHUB_ACTOR:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY.git"
+        
+    #     # 获取实际的提交SHA
+    #     ACTUAL_SHA=$(git rev-parse HEAD)
+        
+    #     # 创建分支名称
+    #     branch_name="release-v0.24.0"
+        
+    #     # 确保我们拥有该提交（由于fetch-depth:0，应该已经存在）
+    #     git show $ACTUAL_SHA --quiet
+        
+    #     # 创建分支
+    #     git branch $branch_name $ACTUAL_SHA
+        
+    #     # 推送到Fork仓库
+    #     git push fork $branch_name
+        
+    #     echo "Successfully created branch $branch_name at $ACTUAL_SHA"
+    #   env:
+    #     GITHUB_ACTOR: ${{ github.actor }}
+    #     GITHUB_REPOSITORY: ${{ github.repository }}
+    #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+        
+
+    - name: Set up Go
+      uses: actions/setup-go@v4
+      with:
+        go-version: '1.22'
+
+    - name: Install Xcode dependencies
       run: |
-        git config --global user.name "GitHub Actions"
-        git config --global user.email "actions@github.com"
-        
-        # 移除可能已存在的同名远程
-        git remote remove fork 2>/dev/null || true
-        
-        # 添加指向您Fork仓库的远程
-        git remote add fork "https://$GITHUB_ACTOR:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY.git"
-        
-        # 获取实际的提交SHA
-        ACTUAL_SHA=$(git rev-parse HEAD)
-        
-        # 创建分支名称
-        branch_name="release-v0.24.0"
-        
-        # 确保我们拥有该提交（由于fetch-depth:0，应该已经存在）
-        git show $ACTUAL_SHA --quiet
-        
-        # 创建分支
-        git branch $branch_name $ACTUAL_SHA
-        
-        # 推送到Fork仓库
-        git push fork $branch_name
-        
-        echo "Successfully created branch $branch_name at $ACTUAL_SHA"
-      env:
-        GITHUB_ACTOR: ${{ github.actor }}
-        GITHUB_REPOSITORY: ${{ github.repository }}
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        xcode-select --install || true
+        sudo xcodebuild -license accept
 
-        
+    - name: Run Makefile (v20)
+      run: |
+        ls
+        cd mobile
+        make ios
 
-    # - name: Set up Go
-    #   uses: actions/setup-go@v4
-    #   with:
-    #     go-version: '1.22'
-
-    # - name: Install Xcode dependencies
-    #   run: |
-    #     xcode-select --install || true
-    #     sudo xcodebuild -license accept
-
-    # # - name: Initialize Gomobile
-    # #   run: |
-    # #     # go install golang.org/x/mobile/cmd/gomobile@a42111704963f4f0d1266674e1e97489aa8dcca0
-    # #     go get golang.org/x/mobile/cmd/gomobile@a42111704963f4f0d1266674e1e97489aa8dcca0
-    # #     go install golang.org/x/mobile/cmd/gomobile
-    # #     gomobile init
-
-    # - name: Run Makefile (v20)
-    #   run: |
-    #     ls
-    #     cd mobile
-    #     make ios
-
-    # - name: Upload artifacts
-    #   uses: actions/upload-artifact@v4
-    #   with:
-    #     name: ios-v24-output
-    #     path: /Users/runner/work/dnsproxy/dnsproxy/mobile/dnsproxy.xcframework/
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: ios-v24-output
+        path: /Users/runner/work/dnsproxy/dnsproxy/mobile/dnsproxy.xcframework/
