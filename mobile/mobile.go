@@ -20,7 +20,7 @@ import (
 	"github.com/miekg/dns"
 )
 
-//nolint
+// nolint
 func init() {
 	// https://github.com/golang/go/issues/21489
 	debug.SetGCPercent(5)
@@ -272,22 +272,28 @@ func createConfig(config *Config) (*proxy.Config, error) {
 	// Init listen addresses and upstreams
 	listenUDPAddr := &net.UDPAddr{Port: config.ListenPort, IP: listenIP}
 	listenTCPAddr := &net.TCPAddr{Port: config.ListenPort, IP: listenIP}
-	upstreams := make([]upstream.Upstream, 0)
+	// upstreams := make([]upstream.Upstream, 0)
 
 	// Check bootstraps list for empty strings
 	bootstrapLines := strings.Split(config.BootstrapDNS, "\n")
-	var bootstraps []string
+	/* var bootstraps []string
 	for _, line := range bootstrapLines {
 		if line == "" {
 			continue
 		}
 
 		bootstraps = append(bootstraps, line)
-	}
+	} */
 
 	lines := strings.Split(config.Upstreams, "\n")
 
-	for i, line := range lines {
+	// Init upstreams
+	upstreamConfig, err := proxy.ParseUpstreamsConfig(lines, bootstrapLines, timeout)
+	if err != nil {
+		log.Fatalf("error while parsing upstreams configuration: %s", err)
+	}
+
+	/* for i, line := range lines {
 		if line == "" {
 			continue
 		}
@@ -298,13 +304,15 @@ func createConfig(config *Config) (*proxy.Config, error) {
 		}
 		log.Printf("Upstream %d: %s", i, dnsUpstream.Address())
 		upstreams = append(upstreams, dnsUpstream)
-	}
+	} */
 
 	// Create the config
 	proxyConfig := proxy.Config{
-		UDPListenAddr:  listenUDPAddr,
-		TCPListenAddr:  listenTCPAddr,
-		Upstreams:      upstreams,
+		UDPListenAddr:            listenUDPAddr,
+		TCPListenAddr:            listenTCPAddr,
+		Upstreams:                upstreamConfig.Upstreams,
+		DomainsReservedUpstreams: upstreamConfig.DomainReservedUpstreams,
+		// Upstreams:      upstreams,
 		AllServers:     config.AllServers,
 		CacheSizeBytes: config.CacheSizeBytes,
 		CacheEnabled:   config.CacheSizeBytes > 0,
