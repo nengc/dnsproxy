@@ -17,8 +17,8 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
       with:
-        ref: 'release-v0.24.0'
-        # ref: 'v0.24.0'  # 确保检出正确的tag
+        # ref: 'release-v0.24.0'
+        ref: 'v0.24.0'  # 确保检出正确的tag
         # fetch-depth: 0   # 获取完整历史，确保所有提交可用
   
     - name: Create branch from tag
